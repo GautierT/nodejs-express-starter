@@ -1,0 +1,8 @@
+.env
+.fonts
+.idea/
+data
+node_modules/
+tmp/
+newrelic_agent.log
+dist/
