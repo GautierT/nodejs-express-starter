@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-express-es6-starter",
+  "name": "nodejs-express-starter",
   "version": "0.1.0",
-  "description": "nodejs-express-es6-starter",
+  "description": "nodejs-express-starter",
   "scripts": {
     "dev": "DEBUG=app:* DEBUG_DEPTH=5  ./node_modules/.bin/nodemon --require dotenv/config --require @babel/register src/index.js",
     "build": "./node_modules/.bin/babel src --out-dir dist --copy-files",
@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gautiert/nodejs-express-es6-starter.git"
+    "url": "git+https://github.com/gautiert/nodejs-express-starter.git"
   },
   "author": "Gautier Thiriez <gautiert@gmail.com>",
   "license": "MIT",
@@ -58,8 +58,8 @@
     "prettier": "^1.16.4"
   },
   "bugs": {
-    "url": "https://github.com/gautiert/nodejs-express-es6-starter/issues"
+    "url": "https://github.com/gautiert/nodejs-express-starter/issues"
   },
-  "homepage": "https://github.com/gautiert/nodejs-express-es6-starter#readme",
+  "homepage": "https://github.com/gautiert/nodejs-express-starter#readme",
   "main": "index.js"
 }
