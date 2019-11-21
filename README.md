@@ -37,6 +37,9 @@ cp .env.example .env
 # Start development live-reload server
 PORT=8080 yarn run dev
 
+# Build a production version
+yarn run build
+
 # Start production server:
 PORT=8080 yarn start
 ```

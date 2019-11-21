@@ -1,0 +1,6 @@
+{
+  "ignore": ["src/test-api/*", "test"],
+  "watch": ["src/"],
+  "exec": "./node_modules/.bin/ts-node -T --require dotenv/config src/index.js",
+  "ext": "js, ts"
+}

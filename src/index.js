@@ -62,6 +62,7 @@ const options = {
   autoReconnect: true,
   useCreateIndex: true,
   useNewUrlParser: true,
+  useUnifiedTopology: true,
 }
 
 mongoose.connection.on('error', function(err) {
