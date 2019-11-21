@@ -21,28 +21,30 @@ module.exports = function(app) {
     app.use('/api/', router)
   }
 
-  debug('Starting Forest Admin...')
-  if (process.env.NODE_ENV === 'production') {
-    app.use(
-      require('forest-express-mongoose').init({
-        modelsDir: path.join(__dirname, '/../models'), // Your models directory.
-        envSecret: process.env.FOREST_ENV_SECRET,
-        authSecret: process.env.FOREST_AUTH_SECRET,
-        mongoose: require('mongoose'), // The database connection.
-      }),
-    )
-  } else {
-    app.use(
-      '/api/',
-      require('forest-express-mongoose').init({
-        modelsDir: path.join(__dirname, '/../models'), // Your models directory.
-        envSecret: process.env.FOREST_ENV_SECRET,
-        authSecret: process.env.FOREST_AUTH_SECRET,
-        mongoose: require('mongoose'), // The database connection.
-      }),
-    )
+  if (process.env.FOREST_ENV_SECRET && process.env.FOREST_AUTH_SECRET) {
+    debug('Starting Forest Admin...')
+    if (process.env.NODE_ENV === 'production') {
+      app.use(
+        require('forest-express-mongoose').init({
+          modelsDir: path.join(__dirname, '/../models'), // Your models directory.
+          envSecret: process.env.FOREST_ENV_SECRET,
+          authSecret: process.env.FOREST_AUTH_SECRET,
+          mongoose: require('mongoose'), // The database connection.
+        }),
+      )
+    } else {
+      app.use(
+        '/api/',
+        require('forest-express-mongoose').init({
+          modelsDir: path.join(__dirname, '/../models'), // Your models directory.
+          envSecret: process.env.FOREST_ENV_SECRET,
+          authSecret: process.env.FOREST_AUTH_SECRET,
+          mongoose: require('mongoose'), // The database connection.
+        }),
+      )
+    }
+    debug('Forest admin started.')
   }
-  debug('Forest admin started.')
 
   app.use(function(err, req, res, next) {
     debug('Erreur Name : ', err.name)

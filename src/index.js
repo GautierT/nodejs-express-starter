@@ -9,6 +9,7 @@ import Debug from 'debug'
 import helmet from 'helmet'
 import compression from 'compression'
 import path from 'path'
+import { loggerMiddleware } from './utils'
 
 const env = process.env.NODE_ENV || process.argv.slice(2)[1] || 'development'
 
@@ -36,7 +37,7 @@ app.use(Sentry.Handlers.requestHandler())
 app.use(helmet())
 
 // logger
-app.use(morgan('dev'))
+// app.use(morgan('dev'))
 
 // 3rd party middleware
 
@@ -48,20 +49,23 @@ app.use(compression())
 app.use(
   bodyParser.json({
     limit: '1mb',
-  }),
+  })
 )
 
 app.use(
   bodyParser.urlencoded({
     extended: true,
     limit: '1mb',
-  }),
+  })
 )
+
+app.use(loggerMiddleware)
 
 const options = {
   autoReconnect: true,
   useCreateIndex: true,
   useNewUrlParser: true,
+  useUnifiedTopology: true,
 }
 
 mongoose.connection.on('error', function(err) {
