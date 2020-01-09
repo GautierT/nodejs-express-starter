@@ -16,7 +16,6 @@
     "type": "git",
     "url": "git+https://github.com/gautiert/nodejs-express-starter.git"
   },
-  "author": "Gautier Thiriez <gautiert@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "@sentry/node": "^5.9.0",
