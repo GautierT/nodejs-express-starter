@@ -26,6 +26,8 @@ if (IS_LOGDNA_CONFIGURED) {
     env: process.env.NODE_ENV,
     hostname: os.hostname(),
   })
+} else {
+  debug('LogDNA not configured.')
 }
 
 let logger
@@ -41,7 +43,7 @@ try {
         },
       ],
     })
-    logger.on('error', function(err, stream) {
+    logger.on('error', function (err, stream) {
       // Handle stream write or create error here.
       console.log('Error when logging : ', err, ' / stream : ', stream)
       sendError(err)
@@ -109,7 +111,7 @@ export const customLogger = (meta, ...msg) => {
 
     // console.log('data : ', util.inspect(data, false, 4))
 
-    if (env === 'production' || (process.env.TIMBER === 'true' && IS_LOGDNA_CONFIGURED)) {
+    if (env === 'production' && IS_LOGDNA_CONFIGURED) {
       // debug('logging')
       if (_get(meta, 'err') || (_get(meta, 'req.statusCode') && _get(meta, 'req.statusCode') >= 400)) {
         logger.error(data, ...msg)
